@@ -43,7 +43,6 @@ class PedidoController
 
         $totalFinal = $totalCarrinho + $frete;
 
-
         $data = [
             'totalCarrinho' => $totalCarrinho,
             'frete' => $frete,
@@ -52,10 +51,11 @@ class PedidoController
             'message' => null,
         ];
 
-        $data = array_merge($data, $extras);
+        $data = array_merge($data, $extras ?? []);
 
         View::render('pedido/index', $data);
     }
+
 
 
     public function aplicar()
