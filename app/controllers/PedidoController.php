@@ -115,7 +115,41 @@ class PedidoController
         }
     }
 
+    public function webhookAlterarStatus()
+    {
+        $input = json_decode(file_get_contents('php://input'), true);
 
+        $id = isset($input['id']) ? (int) $input['id'] : null;
+        $novoStatus = isset($input['status']) ? trim($input['status']) : null;
+
+        $statusValidos = ['pendente', 'pago', 'enviado', 'cancelado'];
+
+        if (!$id || !$novoStatus || !in_array($novoStatus, $statusValidos)) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Dados inválidos']);
+            return;
+        }
+
+        if ($novoStatus === 'cancelado') {
+            $deletado = PedidoModel::deleteWithReturn($id);
+            if ($deletado) {
+                http_response_code(200);
+                echo json_encode(['message' => "Pedido #$id removido com sucesso"]);
+            } else {
+                http_response_code(500);
+                echo json_encode(['error' => "Erro ao remover pedido #$id"]);
+            }
+        } else {
+            $atualizado = PedidoModel::updateStatus($id, $novoStatus);
+            if ($atualizado) {
+                http_response_code(200);
+                echo json_encode(['message' => "Status do pedido #$id atualizado para '$novoStatus'."]);
+            } else {
+                http_response_code(500);
+                echo json_encode(['error' => "Erro ao atualizar status do pedido #$id"]);
+            }
+        }
+    }
 
 
     public function store()

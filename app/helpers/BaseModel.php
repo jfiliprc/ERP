@@ -55,4 +55,16 @@ abstract class BaseModel
         $stmt = $pdo->prepare("DELETE FROM " . static::$table . " WHERE id = ?");
         $stmt->execute([$id]);
     }
+
+    public static function deleteWithReturn($id): bool
+    {
+        $pdo = self::getConnection();
+        $stmt = $pdo->prepare("DELETE FROM " . static::$table . " WHERE id = ?");
+        try {
+            return $stmt->execute([$id]);
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
 }

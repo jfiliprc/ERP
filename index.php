@@ -51,6 +51,9 @@ $router->put("/pedido/{id}", "PedidoController:update");
 $router->get("/pedido", "PedidoController:create");
 $router->post("/pedido", "PedidoController:store");
 $router->post('/pedido/aplicar-cupom', 'PedidoController:aplicar');
+// Webhook para atualizar status do pedido
+$router->post("/webhook/pedido/status", "PedidoController:webhookAtualizarStatus");
+
 
 
 $router->get('/cupons', 'CupomController:index');
