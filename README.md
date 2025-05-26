@@ -49,6 +49,7 @@ O objetivo central deste projeto é oferecer uma base sólida e extensível para
 - API de CEP que alimenta automaticamente informações de endereço
 - Detalhamento dos dados da compra
 - Listagem dos pedidos realizados
+- **Webhook RESTful para atualização automática dos status dos pedidos, removendo pedidos cancelados ou atualizando os demais em tempo real**
 
 ---
 
@@ -91,6 +92,8 @@ Este sistema segue fielmente o padrão **MVC (Model-View-Controller)**, com sepa
 └── estrutura.txt        ← mapeamento ou guia da estrutura
 ```
 
+---
+
 ## ⚙️ Recursos Técnicos
 
 - **Composer** para autoload e gerenciamento de pacotes
@@ -98,6 +101,8 @@ Este sistema segue fielmente o padrão **MVC (Model-View-Controller)**, com sepa
 - **.htaccess** para controle de rotas amigáveis via Apache
 - Banco de dados relacional com dump incluído (`database/dump.sql`)
 - Roteamento manual e explícito para controle total do fluxo de requisições
+- **Webhook RESTful para sincronização automática dos pedidos via POST externo**
+- **Configuração SMTP via arquivo `.env` para envio de e-mails (ex.: notificação de confirmação de pedido)**
 
 ---
 
@@ -116,7 +121,8 @@ O projeto está **completo e funcional**, com todos os módulos integrados. Pode
 
 - Base para um sistema ERP mais completo
 - Exercício de arquitetura limpa em PHP puro
-- Prova de conceito para entrevistas técnicas
+- Prova de conceito para entrevista técnica
+- Integração via webhook para atualizações automáticas dos pedidos em tempo real
 
 ---
 
@@ -129,10 +135,24 @@ git clone https://github.com/jfiliprc/Meu-ERP.git
 # 2. Instale as dependencias do composer
 composer install
 
-# 3. Suba o ambiente com Docker
+# 3. Crie um arquivo `.env` na raiz do projeto com as configurações SMTP (exemplo abaixo)
+```
+
+```
+SMTP_HOST=smtp.exemplo.com
+SMTP_PORT=587
+SMTP_ENCRYPTION=starttls
+SMTP_USERNAME=seu_email@exemplo.com
+SMTP_PASSWORD=sua_senha_segura
+SMTP_FROM_NAME="Nome do Remetente"
+SMTP_FROM_EMAIL=seu_email@exemplo.com
+```
+
+```bash
+# 4. Suba o ambiente com Docker
 docker-compose up -d
 
-# 3. Acesse no navegador
+# 5. Acesse no navegador
 http://localhost:8000
 ```
 
