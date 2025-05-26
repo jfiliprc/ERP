@@ -82,12 +82,27 @@
             </div>
         </div>
 
+        <form id="form-pedido" method="POST" action="/pedido">
 
+            <!-- DADOS PESSOAIS -->
+            <div class="card shadow-sm p-4 mb-4">
+                <h5 class="text-primary mb-3">Dados Pessoais</h5>
 
+                <div class="mb-3">
+                    <label for="nome_completo" class="form-label">Nome Completo</label>
+                    <input type="text" class="form-control" id="nome_completo" name="nome_completo" required>
+                </div>
 
-        <div class="card shadow-sm p-4">
-            <h4 class="text-primary mb-3">Endereço de Entrega</h4>
-            <form method="POST" action="/pedido">
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+            </div>
+
+            <!-- ENDEREÇO DE ENTREGA -->
+            <div class="card shadow-sm p-4 mb-4">
+                <h5 class="text-primary mb-3">Endereço de Entrega</h5>
+
                 <div class="mb-3">
                     <label for="cep" class="form-label">CEP</label>
                     <input type="text" class="form-control" id="cep" name="cep" required>
@@ -117,14 +132,15 @@
                     <label for="estado" class="form-label">Estado</label>
                     <input type="text" class="form-control" id="estado" name="estado" required>
                 </div>
+            </div>
 
-                <button type="submit" class="btn btn-success btn-lg w-100">
-                    <i class="bi bi-check-circle"></i> Confirmar Pedido
-                </button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-success btn-lg w-100">
+                <i class="bi bi-check-circle"></i> Confirmar Pedido
+            </button>
+        </form>
 
     </main>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -149,7 +165,6 @@
                 alert('CEP inválido.');
             }
         });
-
     </script>
 
     <footer class="bg-primary text-white text-center py-3 mt-5">

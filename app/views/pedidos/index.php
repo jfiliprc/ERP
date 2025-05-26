@@ -100,17 +100,48 @@
                                     <td colspan="3" class="p-0">
                                         <div class="collapse" id="<?= $collapseId ?>">
                                             <div class="card card-body">
-                                                <p><strong>Total:</strong> <?= htmlspecialchars($pedido['total']) ?></p>
-                                                <p><strong>Frete:</strong> <?= htmlspecialchars($pedido['frete']) ?></p>
-                                                <p><strong>Endereço:</strong> <?= htmlspecialchars($pedido['endereco']) ?></p>
-                                                <p><strong>CEP:</strong> <?= htmlspecialchars($pedido['cep']) ?></p>
-                                                <p><strong>Quantidade:</strong> <?= htmlspecialchars($pedido['quantidade']) ?>
+                                                <p><strong>Nome do Comprador:</strong>
+                                                    <?= htmlspecialchars($pedido['nome_completo']) ?>
                                                 </p>
+
+                                                <p><strong>E-mail:</strong>
+                                                    <?= htmlspecialchars($pedido['email']) ?>
+                                                </p>
+
+                                                <p><strong>Endereço:</strong>
+                                                    <?= htmlspecialchars($pedido['endereco']) ?>
+                                                </p>
+
+                                                <p><strong>CEP:</strong>
+                                                    <?= htmlspecialchars($pedido['cep']) ?>
+                                                </p>
+
+                                                <hr>
+
+                                                <p><strong>Produto:</strong>
+                                                    <?= htmlspecialchars($pedido['produto_nome']) ?>
+                                                </p>
+
+                                                <p><strong>Variação:</strong>
+                                                    <?= htmlspecialchars($pedido['variacao_nome']) ?>
+                                                </p>
+
+                                                <p><strong>Quantidade:</strong>
+                                                    <?= htmlspecialchars($pedido['quantidade']) ?>
+                                                </p>
+
                                                 <p><strong>Preço Unitário:</strong>
-                                                    <?= htmlspecialchars($pedido['preco_unitario']) ?></p>
-                                                <p><strong>Produto:</strong> <?= htmlspecialchars($pedido['produto_nome']) ?>
+                                                    R$ <?= number_format($pedido['preco_unitario'], 2, ',', '.') ?>
                                                 </p>
-                                                <p><strong>Variação:</strong> <?= htmlspecialchars($pedido['variacao_nome']) ?>
+
+                                                <hr>
+
+                                                <p><strong>Frete:</strong>
+                                                    R$ <?= number_format($pedido['frete'], 2, ',', '.') ?>
+                                                </p>
+
+                                                <p><strong>Total:</strong>
+                                                    R$ <?= number_format($pedido['total'], 2, ',', '.') ?>
                                                 </p>
                                             </div>
                                         </div>

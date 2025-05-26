@@ -2,13 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Helpers\Mailer;
 use App\Helpers\Validator;
 use App\Helpers\View;
 use App\Models\CarrinhoModel;
 use App\Models\CupomModel;
 use App\Models\EstoqueModel;
 use App\Models\PedidoModel;
-use App\Models\ProdutoModel;
 
 
 
@@ -106,7 +106,6 @@ class PedidoController
             return;
         }
 
-        // Atualiza o status no banco
         $atualizado = PedidoModel::updateStatus($id, $novoStatus);
 
         if ($atualizado) {
@@ -122,6 +121,8 @@ class PedidoController
     public function store()
     {
         $data = [
+            'nome_completo' => trim(filter_input(INPUT_POST, 'nome_completo', FILTER_SANITIZE_SPECIAL_CHARS)),
+            'email' => trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)),
             'cep' => trim(filter_input(INPUT_POST, 'cep', FILTER_SANITIZE_SPECIAL_CHARS)),
             'logradouro' => trim(filter_input(INPUT_POST, 'logradouro', FILTER_SANITIZE_SPECIAL_CHARS)),
             'numero' => trim(filter_input(INPUT_POST, 'numero', FILTER_SANITIZE_SPECIAL_CHARS)),
@@ -130,8 +131,9 @@ class PedidoController
             'estado' => trim(filter_input(INPUT_POST, 'estado', FILTER_SANITIZE_SPECIAL_CHARS)),
         ];
 
-
         $rules = [
+            'nome_completo' => ['required', 'min' => 3],
+            'email' => ['required', 'email'],
             'cep' => ['required', 'min' => 8, 'max' => 9],
             'logradouro' => ['required', 'min' => 3],
             'numero' => ['required'],
@@ -147,10 +149,8 @@ class PedidoController
             return;
         }
 
-
         $enderecoCompleto = "{$data['logradouro']}, {$data['numero']} - {$data['bairro']}, {$data['cidade']}-{$data['estado']}, CEP: {$data['cep']}";
 
-        // Pega o carrinho da sessão
         $carrinho = CarrinhoModel::getCarrinho();
 
         if (empty($carrinho)) {
@@ -158,12 +158,10 @@ class PedidoController
             return;
         }
 
-
         $subtotal = 0;
         foreach ($carrinho as $item) {
             $subtotal += ($item['valor'] ?? 0) * ($item['quantidade'] ?? 1);
         }
-
 
         if ($subtotal >= 52.00 && $subtotal <= 166.59) {
             $frete = 15.00;
@@ -181,19 +179,34 @@ class PedidoController
             'status' => 'pendente',
             'endereco' => $enderecoCompleto,
             'cep' => $data['cep'],
+            'nome_completo' => $data['nome_completo'],
+            'email' => $data['email'],
         ];
 
         $pedidoId = PedidoModel::createPedido($pedidoData);
         PedidoModel::createItensPedido($pedidoId, $carrinho);
+
         foreach ($carrinho as $item) {
             EstoqueModel::subtrairEstoque($item['variacao_id'], $item['quantidade']);
         }
 
+        $enviado = Mailer::sendPedidoConfirmacao(
+            $data['nome_completo'],
+            $data['email'],
+            $enderecoCompleto,
+            $total,
+            $frete
+        );
+
+        if ($enviado) {
+            $this->index(message: 'Pedido criado, mas erro ao enviar confirmação: ' . $enviado);
+        }
 
         unset($_SESSION['carrinho']);
 
         $this->index(message: 'Pedido criado com sucesso!');
     }
+
 
 
 }

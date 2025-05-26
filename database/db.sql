@@ -110,6 +110,8 @@ DROP TABLE IF EXISTS `pedidos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_completo` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `frete` decimal(10,2) NOT NULL,
   `status` enum('pendente','pago','enviado','cancelado') DEFAULT 'pendente',

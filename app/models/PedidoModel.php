@@ -34,7 +34,7 @@ class PedidoModel extends BaseModel
         $pdo = self::getConnection();
 
         $sql = "SELECT 
-                p.id, p.status, p.total, p.frete, p.endereco, p.cep,
+                p.id, p.status, p.total, p.nome_completo, p.email, p.frete, p.endereco, p.cep,
                 ip.quantidade, ip.preco_unitario,
                 pr.nome AS produto_nome,
                 v.descricao AS variacao_nome
