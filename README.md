@@ -14,6 +14,7 @@ O objetivo central deste projeto é oferecer uma base sólida e extensível para
 
 ### 🏪 Módulo de Loja
 ![image](https://github.com/user-attachments/assets/603bfc39-b59c-45aa-9d0b-8488f652136e)
+![image](https://github.com/user-attachments/assets/a2879235-71c2-42ab-903b-039b68eb3bd7)
 - Exibição de produtos disponíveis
 - Carrinho de compras com persistência
 - Tela de checkout integrada com os pedidos
@@ -43,6 +44,7 @@ O objetivo central deste projeto é oferecer uma base sólida e extensível para
 ### 📑 Módulo de Pedidos
 ![image](https://github.com/user-attachments/assets/f7bc12b9-64ee-47f9-90fe-3c8c075d787e)
 ![image](https://github.com/user-attachments/assets/208b17dc-9876-46bd-8b1b-13c71bfa13b7)
+![image](https://github.com/user-attachments/assets/c3b36e66-a2b8-4a55-9b65-158d3282f041)
 - Integração com checkout e carrinho
 - API de CEP que alimenta automaticamente informações de endereço
 - Detalhamento dos dados da compra
@@ -56,18 +58,37 @@ Este sistema segue fielmente o padrão **MVC (Model-View-Controller)**, com sepa
 
 ```
 /
-├── app/
-│   ├── Controllers/      ← lógica de controle
-│   ├── Models/           ← regras de negócio e persistência
-│   └── Views/            ← camadas de apresentação (HTML/PHP)
-├── public/               ← ponto de entrada da aplicação (index.php)
-├── routes/               ← mapeamento de URLs para controllers
-├── database/             ← dump SQL e lógica de conexão
-├── helpers/              ← funções auxiliares reutilizáveis
-├── vendor/               ← dependências gerenciadas pelo Composer
-├── docker/               ← configuração de ambiente
-├── .htaccess             ← roteamento para ambiente Apache
-└── composer.json         ← definição de dependências
+├── .dockerignore        ← ignora arquivos para build Docker
+├── .gitignore           ← ignora arquivos no Git
+├── composer.json        ← definição de dependências PHP
+├── docker-compose.yml   ← orquestração de containers
+├── README.md            ← documentação do projeto
+│
+├── config/              ← configurações do servidor
+│   └── apache/          ← configs específicas do Apache
+│
+├── migrations/          ← scripts SQL de migração
+│
+├── public/              ← ponto de entrada da aplicação (index.php)
+│   ├── .htaccess        ← roteamento no Apache
+│   ├── css/             ← arquivos de estilo
+│   ├── js/              ← scripts JavaScript
+│   └── assets/          ← imagens e outros recursos
+│
+├── src/                 ← código-fonte da aplicação
+│   ├── app/             ← estrutura MVC
+│   │   ├── controllers/ ← lógica de controle (ex.: ProdutoController)
+│   │   ├── models/      ← regras de negócio (ex.: Produto.php)
+│   │   ├── views/       ← apresentação (ex.: home.php)
+│   │   ├── core/        ← núcleo da aplicação (ex.: Router.php)
+│   │   ├── helpers/     ← funções utilitárias (ex.: Validation.php)
+│   │   └── routes/      ← definição de rotas (web.php)
+│   │
+│   ├── config/          ← configurações gerais (Config.php)
+│   └── docker/          ← arquivos para build Docker (Dockerfile)
+│
+├── vendor/              ← dependências instaladas via Composer
+└── estrutura.txt        ← mapeamento ou guia da estrutura
 ```
 
 ## ⚙️ Recursos Técnicos
@@ -115,7 +136,7 @@ docker-compose up -d
 http://localhost:8000
 ```
 
-> Certifique-se de importar o `dump.sql` no seu banco ou configure variáveis de ambiente para acesso automático.
+> Certifique-se de importar o `database/db.sql` no seu banco ou configure variáveis de ambiente para acesso automático.
 
 ---
 
