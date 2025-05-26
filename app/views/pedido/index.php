@@ -6,6 +6,25 @@
     <title>Finalizar Pedido - Minha Loja</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -88,14 +107,15 @@
             <div class="card shadow-sm p-4 mb-4">
                 <h5 class="text-primary mb-3">Dados Pessoais</h5>
 
-                <div class="mb-3">
-                    <label for="nome_completo" class="form-label">Nome Completo</label>
-                    <input type="text" class="form-control" id="nome_completo" name="nome_completo" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label for="nome_completo" class="form-label">Nome Completo</label>
+                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
                 </div>
             </div>
 
@@ -103,34 +123,31 @@
             <div class="card shadow-sm p-4 mb-4">
                 <h5 class="text-primary mb-3">Endereço de Entrega</h5>
 
-                <div class="mb-3">
-                    <label for="cep" class="form-label">CEP</label>
-                    <input type="text" class="form-control" id="cep" name="cep" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="logradouro" class="form-label">Rua</label>
-                    <input type="text" class="form-control" id="logradouro" name="logradouro" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="numero" class="form-label">Número</label>
-                    <input type="text" class="form-control" id="numero" name="numero" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="bairro" class="form-label">Bairro</label>
-                    <input type="text" class="form-control" id="bairro" name="bairro" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="cidade" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="cidade" name="cidade" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="estado" class="form-label">Estado</label>
-                    <input type="text" class="form-control" id="estado" name="estado" required>
+                <div class="row g-3">
+                    <div class="col-12 col-md-4 col-lg-2">
+                        <label for="cep" class="form-label">CEP</label>
+                        <input type="text" class="form-control" id="cep" name="cep" required>
+                    </div>
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <label for="logradouro" class="form-label">Rua</label>
+                        <input type="text" class="form-control" id="logradouro" name="logradouro" required>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-2">
+                        <label for="numero" class="form-label">Número</label>
+                        <input type="text" class="form-control" id="numero" name="numero" required>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" required>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <label for="cidade" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade" required>
+                    </div>
+                    <div class="col-12 col-md-2 col-lg-2">
+                        <label for="estado" class="form-label">Estado</label>
+                        <input type="text" class="form-control" id="estado" name="estado" required>
+                    </div>
                 </div>
             </div>
 
@@ -140,7 +157,6 @@
         </form>
 
     </main>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

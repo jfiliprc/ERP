@@ -6,7 +6,17 @@
     <title>Produtos - ERP</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -16,13 +26,12 @@
             <a class="navbar-brand" href="/">ERP</a>
             <div>
                 <a class="btn btn-outline-light me-2" href="/"><i class="bi bi-house-door"></i></a>
-                <a class="btn btn-outline-light me-2" href="/carrinho"><i class="bi bi bi-cart4"></i></a>
+                <a class="btn btn-outline-light me-2" href="/carrinho"><i class="bi bi-cart4"></i></a>
             </div>
         </div>
     </nav>
 
-
-    <div class="container py-5">
+    <main class="container py-5">
 
         <div class="text-center mb-5">
             <h1 class="fw-bold text-primary">Gestão de Produtos</h1>
@@ -40,23 +49,17 @@
         <?php if (!empty($errors)): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i class="bi bi-exclamation-triangle me-2"></i>
-                <?php if (!empty($errors)): ?>
-                    <div class="alert alert-danger">
-                        <ul>
-                            <?php foreach ($errors as $error): ?>
-                                <li><?= $error ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= $error ?></li>
+                    <?php endforeach; ?>
+                </ul>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
             </div>
         <?php endif; ?>
 
-
         <div class="row justify-content-center">
             <div class="col-md-6">
-
                 <div class="card shadow-sm mb-5">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i> Novo Produto</h5>
@@ -80,7 +83,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -93,7 +95,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>Nome</th>
-                            <th>valor (R$)</th>
+                            <th>Valor (R$)</th>
                             <th class="text-center">Ações</th>
                         </tr>
                     </thead>
@@ -122,15 +124,14 @@
             </div>
         </div>
 
-    </div>
+    </main>
 
-    <footer class="bg-primary text-white text-center py-3 mt-5">
+    <footer class="bg-primary text-white text-center py-3">
         ERP - Sistema de Gestão &copy; <?= date('Y') ?>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 
     <script>
         const element = document.getElementById('valor');

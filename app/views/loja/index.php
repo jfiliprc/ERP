@@ -6,6 +6,24 @@
     <title>Loja - Vitrine</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,7 +57,6 @@
             </div>
         <?php endif; ?>
 
-
         <h1 class="mb-4 text-center text-primary">Produtos Disponíveis</h1>
 
         <div class="row g-4">
@@ -69,7 +86,6 @@
                             <?php else: ?>
                                 <p><em>Sem variações disponíveis</em></p>
                             <?php endif; ?>
-
 
                             <div>
                                 <?php if (!empty($produto['variacoes'])): ?>
@@ -107,16 +123,13 @@
             <?php endif; ?>
         </div>
 
-
-
     </main>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <footer class="bg-primary text-white text-center py-3 mt-5">
         Minha Loja &copy; <?= date('Y') ?>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -2,26 +2,50 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Estoque - ERP</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <style>
+        /* Faz o body ocupar toda a altura da viewport e usa flex para empurrar o footer para baixo */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+            /* Faz o main crescer e ocupar o espaço disponível */
+        }
+
+        footer {
+            flex-shrink: 0;
+            /* Garante que o footer não encolha */
+        }
+
+        /* Torna a tabela responsiva em telas pequenas */
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="/">ERP</a>
             <div>
-                <a class="btn btn-outline-light me-2" href="/"><i class="bi bi-house-door"></i></a>
-                <a class="btn btn-outline-light me-2" href="/carrinho"><i class="bi bi-cart4"></i></a>
+                <a class="btn btn-outline-light me-2" href="/" title="Início"><i class="bi bi-house-door"></i></a>
+                <a class="btn btn-outline-light me-2" href="/carrinho" title="Carrinho"><i class="bi bi-cart4"></i></a>
             </div>
         </div>
     </nav>
 
-    <div class="container py-5">
-
+    <main class="container py-5 flex-grow-1">
         <div class="text-center mb-5">
             <h1 class="fw-bold text-primary">Gestão de Estoque</h1>
             <p class="text-muted">Adicione, edite e exclua registros de estoque por variação.</p>
@@ -48,8 +72,7 @@
         <?php endif; ?>
 
         <div class="row justify-content-center mb-5">
-            <div class="col-md-6">
-
+            <div class="col-12 col-md-8 col-lg-6">
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i> Novo Estoque</h5>
@@ -57,29 +80,27 @@
                     <div class="card-body">
                         <form method="POST" action="/estoque">
                             <div class="mb-3">
-                                <label class="form-label">Variação (Produto - Descrição)</label>
-                                <select name="variacao_id" class="form-select" required>
+                                <label for="variacao_id" class="form-label">Variação (Produto - Descrição)</label>
+                                <select id="variacao_id" name="variacao_id" class="form-select" required>
                                     <option value="">Selecione a Variação</option>
                                     <?php foreach ($variacoes as $v): ?>
-                                        <option value="<?= $v['id'] ?>"
-                                            <?= (isset($data['variacao_id']) && $data['variacao_id'] == $v['id']) ? 'selected' : '' ?>>
+                                        <option value="<?= $v['id'] ?>" <?= (isset($data['variacao_id']) && $data['variacao_id'] == $v['id']) ? 'selected' : '' ?>>
                                             <?= htmlspecialchars($v['nome']) ?> — <?= htmlspecialchars($v['descricao']) ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Quantidade</label>
-                                <input type="number" name="quantidade" min="0" required class="form-control"
-                                    value="<?= htmlspecialchars($data['quantidade'] ?? '') ?>">
+                                <label for="quantidade" class="form-label">Quantidade</label>
+                                <input type="number" id="quantidade" name="quantidade" min="0" required
+                                    class="form-control" value="<?= htmlspecialchars($data['quantidade'] ?? '') ?>">
                             </div>
-                            <button class="btn btn-success w-100">
+                            <button class="btn btn-success w-100" type="submit">
                                 <i class="bi bi-save"></i> Salvar Estoque
                             </button>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -87,7 +108,7 @@
             <div class="card-header bg-primary text-white">
                 <h5 class="mb-0"><i class="bi bi-list-ul me-2"></i> Estoque Cadastrado</h5>
             </div>
-            <div class="card-body p-0">
+            <div class="card-body p-0 table-responsive">
                 <table class="table table-hover mb-0">
                     <thead class="table-light">
                         <tr>
@@ -104,13 +125,14 @@
                                 <td><?= htmlspecialchars($e['variacao_descricao']) ?></td>
                                 <td><?= htmlspecialchars($e['quantidade']) ?></td>
                                 <td class="text-center">
-                                    <div class="d-flex justify-content-center gap-2">
+                                    <div class="d-flex justify-content-center gap-2 flex-wrap">
                                         <a href="/estoque/<?= $e['id'] ?>" class="btn btn-warning btn-sm" title="Editar">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form method="POST" action="/estoque/<?= $e['id'] ?>" onsubmit="return confirm('Confirma exclusão?')">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button class="btn btn-danger btn-sm" title="Excluir">
+                                        <form method="POST" action="/estoque/<?= $e['id'] ?>"
+                                            onsubmit="return confirm('Confirma exclusão?')" class="m-0 p-0">
+                                            <input type="hidden" name="_method" value="DELETE" />
+                                            <button class="btn btn-danger btn-sm" title="Excluir" type="submit">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
@@ -128,10 +150,9 @@
                 </table>
             </div>
         </div>
+    </main>
 
-    </div>
-
-    <footer class="bg-primary text-white text-center py-3 mt-5">
+    <footer class="bg-primary text-white text-center py-3 mt-auto">
         ERP - Sistema de Gestão &copy; <?= date('Y') ?>
     </footer>
 

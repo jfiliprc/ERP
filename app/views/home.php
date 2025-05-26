@@ -14,19 +14,21 @@
 <body style="background-color: #cfe9f1;">
 
     <!-- HERO -->
-    <section class="py-5 text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold text-primary">Mini ERP</h1>
-            <p class="lead text-secondary">Gerencie produtos, pedidos e muito mais com facilidade.</p>
+    <section class="py-5 text-center container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-4 fw-bold text-primary">Mini ERP</h1>
+                <p class="lead text-secondary">Gerencie produtos, pedidos e muito mais com facilidade.</p>
+            </div>
         </div>
     </section>
 
     <!-- CARDS -->
-    <div class="container py-4">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="container-fluid py-4">
+        <div class="row g-4">
 
             <!-- Produtos -->
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 custom-card">
                     <div class="card-body text-center d-flex flex-column">
                         <i class="bi bi-box-seam display-4 text-primary mb-3"></i>
@@ -39,7 +41,7 @@
             </div>
 
             <!-- Estoque -->
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 custom-card">
                     <div class="card-body text-center d-flex flex-column">
                         <i class="bi bi-clipboard-data display-4 text-success mb-3"></i>
@@ -51,7 +53,7 @@
             </div>
 
             <!-- Pedidos -->
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 custom-card">
                     <div class="card-body text-center d-flex flex-column">
                         <i class="bi bi-cart4 display-4 text-warning mb-3"></i>
@@ -63,7 +65,7 @@
             </div>
 
             <!-- Cupons -->
-            <div class="col">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 custom-card">
                     <div class="card-body text-center d-flex flex-column">
                         <i class="bi bi-ticket-perforated display-4 text-danger mb-3"></i>
@@ -78,7 +80,7 @@
     </div>
 
     <!-- LOJA - Card Full Width -->
-    <div class="container py-4">
+    <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12">
                 <div class="card shadow-sm border rounded-4" style="background-color: #ffffff; border-color: #a8d0ff;">
@@ -88,11 +90,10 @@
                             <i class="bi bi-shop-window display-4"></i>
                             <div>
                                 <h4 class="mb-1 fw-bold">Loja</h4>
-                                <p class="mb-0" style="max-width: 600px;">Faça compras aqui e gerencie seu carrinho
-                                    facilmente.</p>
+                                <p class="mb-0">Faça compras aqui e gerencie seu carrinho facilmente.</p>
                             </div>
                         </div>
-                        <div class="d-flex gap-2">
+                        <div class="d-flex gap-2 flex-wrap">
                             <a href="/loja" class="btn btn-primary btn-lg fw-semibold">
                                 <i class="bi bi-bag-fill me-2"></i> Acessar Loja
                             </a>
@@ -106,7 +107,6 @@
         </div>
     </div>
 
-
     <!-- FOOTER -->
     <footer class="text-center py-4 text-muted">
         ERP © 2025
@@ -114,8 +114,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Custom CSS -->
     <style>
@@ -129,8 +127,5 @@
         }
     </style>
 </body>
-
-
-
 
 </html>

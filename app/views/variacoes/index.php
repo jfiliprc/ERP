@@ -4,25 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Variações - ERP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="/">ERP</a>
-            <div>
-                <a class="btn btn-outline-light me-2" href="/"><i class="bi bi-house-door"></i></a>
-                <a class="btn btn-outline-light me-2" href="/carrinho"><i class="bi bi-cart4"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="d-flex gap-2">
+                    <a class="btn btn-outline-light" href="/"><i class="bi bi-house-door"></i></a>
+                    <a class="btn btn-outline-light" href="/carrinho"><i class="bi bi-cart4"></i></a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container py-5">
+    <main class="container py-4 flex-grow-1">
 
-        <div class="text-center mb-5">
+        <div class="text-center mb-4">
             <h1 class="fw-bold text-primary">Gestão de Variações</h1>
             <p class="text-muted">Cadastre, edite e exclua variações de produtos.</p>
         </div>
@@ -38,7 +44,7 @@
         <?php if (!empty($errors)): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i class="bi bi-exclamation-triangle me-2"></i>
-                <ul>
+                <ul class="mb-0">
                     <?php foreach ($errors as $error): ?>
                         <li><?= $error ?></li>
                     <?php endforeach; ?>
@@ -48,9 +54,9 @@
         <?php endif; ?>
 
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-12 col-md-8 col-lg-6">
 
-                <div class="card shadow-sm mb-5">
+                <div class="card shadow-sm mb-4">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i> Nova Variação</h5>
                     </div>
@@ -87,42 +93,44 @@
                 <h5 class="mb-0"><i class="bi bi-list-ul me-2"></i> Variações Cadastradas</h5>
             </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Produto</th>
-                            <th>Descrição</th>
-                            <th class="text-center">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($variacoes as $v): ?>
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-light">
                             <tr>
-                                <td><?= htmlspecialchars($v['nome']) ?></td>
-                                <td><?= htmlspecialchars($v['descricao']) ?></td>
-                                <td class="text-center">
-                                    <div class="d-flex justify-content-center gap-2">
-                                        <a href="/variacoes/<?= $v['id'] ?>" class="btn btn-warning btn-sm" title="Editar">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                        <form method="POST" action="/variacoes/<?= $v['id'] ?>">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button class="btn btn-danger btn-sm" title="Excluir">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <th>Produto</th>
+                                <th>Descrição</th>
+                                <th class="text-center">Ações</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($variacoes as $v): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($v['nome']) ?></td>
+                                    <td><?= htmlspecialchars($v['descricao']) ?></td>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                            <a href="/variacoes/<?= $v['id'] ?>" class="btn btn-warning btn-sm" title="Editar">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <form method="POST" action="/variacoes/<?= $v['id'] ?>" class="d-inline">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button class="btn btn-danger btn-sm" title="Excluir">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-    </div>
+    </main>
 
-    <footer class="bg-primary text-white text-center py-3 mt-5">
+    <footer class="bg-primary text-white text-center py-3">
         ERP - Sistema de Gestão &copy; <?= date('Y') ?>
     </footer>
 
