@@ -55,7 +55,7 @@
                         <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i> Novo Cupom</h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="<?= $action ?>">
+                        <form method="POST" action="/cupons">
                             <div class="mb-3">
                                 <label class="form-label">Código</label>
                                 <input type="text" name="codigo" placeholder="Código do Cupom" required
