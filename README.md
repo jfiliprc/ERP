@@ -9,31 +9,44 @@ O objetivo central deste projeto é oferecer uma base sólida e extensível para
 ---
 
 ## 📦 Funcionalidades Principais
+![image](https://github.com/user-attachments/assets/ac311bca-1c10-47f5-99b8-13a842940465)
+
 
 ### 🏪 Módulo de Loja
+![image](https://github.com/user-attachments/assets/603bfc39-b59c-45aa-9d0b-8488f652136e)
 - Exibição de produtos disponíveis
 - Carrinho de compras com persistência
 - Tela de checkout integrada com os pedidos
 
-### 📦 Módulo de Produtos
+
+
+### 📦 Módulo de Produtos e Variações
+![image](https://github.com/user-attachments/assets/786e2325-ecf1-4026-b5e5-7274dc0d98f1)
+![image](https://github.com/user-attachments/assets/41046c83-c614-4733-8ccc-69532316cd4c)
 - CRUD completo de produtos
 - Cadastro de variações (como tamanhos, cores etc.)
-- Vínculo entre produtos e estoque
+- Vínculo entre produtos e variações
 
 ### 📊 Módulo de Estoque
+![image](https://github.com/user-attachments/assets/ff62516c-2540-4cb9-9449-2ae3b5dc97d4)
 - Cadastro e controle de quantidades
 - Atualização automática ao final das compras
 - Visualização geral do inventário
 
 ### 💰 Módulo de Cupons
+![image](https://github.com/user-attachments/assets/49cde535-8d5e-431e-9521-00841bc21acc)
+![image](https://github.com/user-attachments/assets/20d554f8-1f63-4a57-9502-dc6f99a68bc6)
 - CRUD de cupons promocionais
 - Aplicação automática no carrinho
 - Regras flexíveis de desconto
 
 ### 📑 Módulo de Pedidos
-- Listagem dos pedidos realizados
-- Detalhamento dos dados da compra
+![image](https://github.com/user-attachments/assets/f7bc12b9-64ee-47f9-90fe-3c8c075d787e)
+![image](https://github.com/user-attachments/assets/208b17dc-9876-46bd-8b1b-13c71bfa13b7)
 - Integração com checkout e carrinho
+- API de CEP que alimenta automaticamente informações de endereço
+- Detalhamento dos dados da compra
+- Listagem dos pedidos realizados
 
 ---
 
@@ -92,7 +105,10 @@ O projeto está **completo e funcional**, com todos os módulos integrados. Pode
 # 1. Clone o repositório
 git clone https://github.com/jfiliprc/Meu-ERP.git
 
-# 2. Suba o ambiente com Docker
+# 2. Instale as dependencias do composer
+composer install
+
+# 3. Suba o ambiente com Docker
 docker-compose up -d
 
 # 3. Acesse no navegador
