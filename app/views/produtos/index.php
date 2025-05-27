@@ -1,36 +1,9 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Produtos - ERP</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1;
-        }
-    </style>
-</head>
+<?php $title = 'Produtos - ERP'; ?>
+<?php require __DIR__ . '/../layouts/header.php'; ?>
+<?php require __DIR__ . '/../partials/navbar.php'; ?>
 
 <body class="bg-light">
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="/">ERP</a>
-            <div>
-                <a class="btn btn-outline-light me-2" href="/"><i class="bi bi-house-door"></i></a>
-                <a class="btn btn-outline-light me-2" href="/carrinho"><i class="bi bi-cart4"></i></a>
-            </div>
-        </div>
-    </nav>
-
     <main class="container py-5">
 
         <div class="text-center mb-5">
@@ -38,25 +11,7 @@
             <p class="text-muted">Cadastre, edite e exclua seus produtos de forma prática e rápida.</p>
         </div>
 
-        <?php if (!empty($message)): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle me-2"></i>
-                <?= $message ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-            </div>
-        <?php endif; ?>
-
-        <?php if (!empty($errors)): ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="bi bi-exclamation-triangle me-2"></i>
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= $error ?></li>
-                    <?php endforeach; ?>
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-            </div>
-        <?php endif; ?>
+        <?php require __DIR__ . '/../partials/alerts.php'; ?>
 
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -105,13 +60,14 @@
                                 <td><?= htmlspecialchars($p['nome']) ?></td>
                                 <td><?= number_format($p['valor'], 2, ',', '.') ?></td>
                                 <td class="text-center">
-                                    <div class="d-flex justify-content-center gap-2">
+                                    <div class="d-flex justify-content-center gap-2 flex-wrap">
                                         <a href="/produtos/<?= $p['id'] ?>" class="btn btn-warning btn-sm" title="Editar">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form method="POST" action="/produtos/<?= $p['id'] ?>">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button class="btn btn-danger btn-sm" title="Excluir">
+                                        <form method="POST" action="/produtos/<?= $p['id'] ?>"
+                                            onsubmit="return confirm('Confirma exclusão?')" class="m-0 p-0">
+                                            <input type="hidden" name="_method" value="DELETE" />
+                                            <button class="btn btn-danger btn-sm" title="Excluir" type="submit">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
@@ -126,12 +82,7 @@
 
     </main>
 
-    <footer class="bg-primary text-white text-center py-3">
-        ERP - Sistema de Gestão &copy; <?= date('Y') ?>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php require __DIR__ . '/../layouts/footer.php'; ?>
 
     <script>
         const element = document.getElementById('valor');

@@ -1,61 +1,14 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Loja - Vitrine</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-    </style>
-</head>
+<?php $title = 'Loja - ERP'; ?>
+<?php require __DIR__ . '/../layouts/header.php'; ?>
+<?php require __DIR__ . '/../partials/navbar.php'; ?>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="/">Minha Loja</a>
-            <div>
-                <a class="btn btn-outline-light me-2" href="/carrinho"><i class="bi bi-cart4"></i> Carrinho</a>
-            </div>
-        </div>
-    </nav>
-
     <main class="container py-5">
 
-        <?php if (!empty($message)): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <?= htmlspecialchars($message) ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
-
-        <?php if (!empty($errors)): ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <ul class="mb-0">
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= htmlspecialchars($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
+        <?php require __DIR__ . '/../partials/alerts.php'; ?>
 
         <h1 class="mb-4 text-center text-primary">Produtos Disponíveis</h1>
 
@@ -125,11 +78,7 @@
 
     </main>
 
-    <footer class="bg-primary text-white text-center py-3 mt-5">
-        Minha Loja &copy; <?= date('Y') ?>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php require __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 
 </html>

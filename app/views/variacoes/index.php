@@ -1,30 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Variações - ERP</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
+<?php $title = 'Variações - ERP'; ?>
+<?php require __DIR__ . '/../layouts/header.php'; ?>
+<?php require __DIR__ . '/../partials/navbar.php'; ?>
 
 <body class="bg-light d-flex flex-column min-vh-100">
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="/">ERP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <div class="d-flex gap-2">
-                    <a class="btn btn-outline-light" href="/"><i class="bi bi-house-door"></i></a>
-                    <a class="btn btn-outline-light" href="/carrinho"><i class="bi bi-cart4"></i></a>
-                </div>
-            </div>
-        </div>
-    </nav>
 
     <main class="container py-4 flex-grow-1">
 
@@ -33,25 +14,7 @@
             <p class="text-muted">Cadastre, edite e exclua variações de produtos.</p>
         </div>
 
-        <?php if (!empty($message)): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle me-2"></i>
-                <?= $message ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-            </div>
-        <?php endif; ?>
-
-        <?php if (!empty($errors)): ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="bi bi-exclamation-triangle me-2"></i>
-                <ul class="mb-0">
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= $error ?></li>
-                    <?php endforeach; ?>
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-            </div>
-        <?php endif; ?>
+    <?php require __DIR__ . '/../partials/alerts.php'; ?>
 
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
@@ -130,11 +93,7 @@
 
     </main>
 
-    <footer class="bg-primary text-white text-center py-3">
-        ERP - Sistema de Gestão &copy; <?= date('Y') ?>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php require __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 
 </html>

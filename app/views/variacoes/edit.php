@@ -1,36 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Editar Variação</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+<?php $title = 'Editar Variações - ERP'; ?>
+<?php require __DIR__ . '/../layouts/header.php'; ?>
+<?php require __DIR__ . '/../partials/navbar.php'; ?>
 
-        main {
-            flex: 1;
-        }
-    </style>
-</head>
 
 <body class="bg-light">
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="/">ERP</a>
-            <div>
-                <a class="btn btn-outline-light me-2" href="/"><i class="bi bi-house-door"></i></a>
-                <a class="btn btn-outline-light me-2" href="/carrinho"><i class="bi bi-cart4"></i></a>
-            </div>
-        </div>
-    </nav>
 
     <main class="container py-5">
         <div class="row justify-content-center">
@@ -77,11 +53,7 @@
         </div>
     </main>
 
-    <footer class="bg-primary text-white text-center py-3">
-        ERP - Sistema de Gestão &copy; <?= date('Y') ?>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php require __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 
 </html>
